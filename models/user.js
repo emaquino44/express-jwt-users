@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt');
+var bcrypt = require('bcrypt');
 
 
 var UserSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  password: String
+    name: String,
+    email: String,
+    password: String
 });
 
 // Let's craft how our JSON object should look!
@@ -22,13 +22,13 @@ UserSchema.set('toJSON', {
 });
 
 UserSchema.methods.authenticated = function(password, callback) {
-  bcrypt.compare(password, this.password, function(err, res) {
-      if (err) {
-        callback(err);
-      } else {
-        callback(null, res ? this : false);
-      }
-  });
+    bcrypt.compare(password, this.password, function(err, res) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, res ? this : false);
+        }
+    });
 }
 
 
